@@ -1,9 +1,12 @@
 import logo from './logo.svg';
 import './App.css';
+import { Button } from "@material-ui/core";
+import NavBar from "./components/Nav";
 
 function App() {
   return (
     <div className="App">
+      <NavBar></NavBar>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
@@ -18,6 +21,7 @@ function App() {
           Learn React
         </a>
       </header>
+      <Button>OK</Button>
     </div>
   );
 }
