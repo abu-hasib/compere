@@ -21,7 +21,7 @@ class App extends React.Component {
             </Route>
             <Route path="/">
               <div className="welcome">
-                <h1>Welcome</h1>
+                <h1>Welcome...</h1>
               </div>
             </Route>
             <Route>
