@@ -7,19 +7,30 @@ import { Button, Typography } from "@material-ui/core";
 // const useStyles = makeStyles((theme) => ({}));
 
 const Dashboard = () => {
-  const [name, setName] = useState("");
-  const [display, setDisplay] = useState(false);
+  const [nameOne, setNameOne] = useState("");
+  const [nameTwo, setNameTwo] = useState("");
+  const [displayOne, setDisplayOne] = useState("");
+  const [displayTwo, setDisplayTwo] = useState("");
 
   function onEnter(event) {
-    setName("");
     if (event.keyCode === 13) {
-      setDisplay(true);
+        console.log(event.target.name)
+        if (event.target.name === "nameOne") {
+            setDisplayOne(nameOne);
+            setNameOne("")
+            return true
+        }
+        setDisplayTwo(nameTwo)
+        setNameTwo("")
     }
   }
 
   function onChange(event) {
-    setName(event.target.value);
-    setDisplay(false);
+    if (event.target.name === "nameOne") {
+        setNameOne(event.target.value);
+        return true;
+    }
+    setNameTwo(event.target.value);
   }
 
   return (
@@ -27,15 +38,15 @@ const Dashboard = () => {
       <Typography>Add a Student</Typography>
       <div className="compare">
         <div>
-          {display && <h5>{name}</h5>}
+          <Typography variant="h2">{displayOne}</Typography>
           <TextField
             margin="normal"
             required
-            value={name}
+            value={nameOne}
             fullWidth
-            id="name"
+            id="nameOne"
             label="Enter a name"
-            name="name"
+            name="nameOne"
             autoComplete="email"
             onKeyUp={onEnter}
             onChange={onChange}
@@ -43,9 +54,23 @@ const Dashboard = () => {
           <UploadButton></UploadButton>
         </div>
         <div>
+        <Typography variant="h2">{displayTwo}</Typography>
+          <TextField
+            margin="normal"
+            required
+            value={nameTwo}
+            fullWidth
+            id="nameTwo"
+            label="Enter a name"
+            name="nameTwo"
+            autoComplete="email"
+            onKeyUp={onEnter}
+            onChange={onChange}
+          />
           <UploadButton></UploadButton>
         </div>
       </div>
+      <Button color="primary" size="large" variant="contained">Compare</Button>
     </div>
   );
 };

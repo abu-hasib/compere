@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -25,7 +25,9 @@ const useStyles = makeStyles((theme) => ({
 const NavBar = () => {
   const classes = useStyles();
   let history = useHistory();
+  let location = useLocation();
 
+  let path = location.pathname
   function onLoginClick() {
     history.push("/login");
   }
@@ -49,12 +51,12 @@ const NavBar = () => {
           <Typography variant="h6" className={classes.title}>
             Compere
           </Typography>
-          <Button color="inherit" onClick={onLoginClick}>
+          { path === "/" ? <Button color="inherit" onClick={onLoginClick}>
             Login
-          </Button>
-          <Button color="inherit" onClick={onLogoutClick}>
+          </Button> : ""}
+          { path === "/dashboard" ? <Button color="inherit" onClick={onLogoutClick}>
             Logout
-          </Button>
+          </Button> :  ""}
         </Toolbar>
       </AppBar>
     </div>

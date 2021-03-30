@@ -20,7 +20,9 @@ class App extends React.Component {
               <Dashboard />
             </Route>
             <Route path="/">
-              <div>Welcome</div>
+              <div className="welcome">
+                <h1>Welcome</h1>
+              </div>
             </Route>
             <Route>
               <App />

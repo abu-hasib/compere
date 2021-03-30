@@ -36,3 +36,20 @@
     transform: rotate(360deg);
   }
 }
+
+.welcome {
+  background-image: url(https://source.unsplash.com/random);
+  height: 94vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+}
+
+.welcome h1 {
+  font-size: 64px;
+  margin-top: 0;
+  color: #0e0e0e;
+}

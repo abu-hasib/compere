@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     height: "100vh",
   },
   image: {
-    // backgroundImage: "url(https://source.unsplash.com/random)",
+    backgroundImage: "url(https://source.unsplash.com/random)",
     backgroundRepeat: "no-repeat",
     backgroundColor:
       theme.palette.type === "light"
@@ -118,10 +118,11 @@ const Login = () => {
             />
             <Button
               type="submit"
-              fullWidth
               variant="contained"
               color="primary"
+                            size="large"
               className={classes.submit}
+              disabled={password.length === 0 || email.length === 0}
             >
               Sign In
             </Button>
@@ -131,11 +132,5 @@ const Login = () => {
     </Grid>
   );
 };
-
-const createCookieInHour = (cookieName, cookieValue, hourToExpire) => {
-  let date = new Date();
-  date.setTime(date.getTime()+(hourToExpire*60*60*1000));
-  document.cookie = cookieName + " = " + cookieValue + "; expires = " +date.toGMTString();
-}
 
 export default Login;
