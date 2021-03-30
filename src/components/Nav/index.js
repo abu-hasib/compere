@@ -1,4 +1,6 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
+
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
@@ -19,8 +21,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
 const NavBar = () => {
   const classes = useStyles();
+  let history = useHistory();
+
+  function handleClick() {
+    history.push("/login");
+  }
 
   return (
     <div className={classes.root}>
@@ -35,9 +43,11 @@ const NavBar = () => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-            News
+            Compere
           </Typography>
-          <Button color="inherit">Login</Button>
+          <Button color="inherit" onClick={handleClick}>
+            Login
+          </Button>
         </Toolbar>
       </AppBar>
     </div>
