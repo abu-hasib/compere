@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -9,7 +9,7 @@ import LockOutlinedIcon from "@material-ui/icons/VpnKeyTwoTone";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
-
+import { login } from "../../services/api";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -48,9 +48,33 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Login = ({ email, password, error, onChange, onSubmit }) => {
+const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
+  const history = useHistory();
+
   const classes = useStyles();
-  let history = useHistory();
+
+  function onChange(event) {
+    if (event.target.name === "email") {
+      setEmail(event.target.value);
+      return true;
+    }
+    setPassword(event.target.value);
+  }
+
+  function onSubmit(event) {
+    login()
+      .then((response) => {
+        if (response.status === 200) {
+          history.push("/dashboard");
+        }
+      })
+      .catch((error) => setError(error));
+
+    event.preventDefault();
+  }
 
   return (
     <Grid container component="main" className={classes.root}>
@@ -107,5 +131,11 @@ const Login = ({ email, password, error, onChange, onSubmit }) => {
     </Grid>
   );
 };
+
+const createCookieInHour = (cookieName, cookieValue, hourToExpire) => {
+  let date = new Date();
+  date.setTime(date.getTime()+(hourToExpire*60*60*1000));
+  document.cookie = cookieName + " = " + cookieValue + "; expires = " +date.toGMTString();
+}
 
 export default Login;

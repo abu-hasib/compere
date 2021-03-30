@@ -26,8 +26,12 @@ const NavBar = () => {
   const classes = useStyles();
   let history = useHistory();
 
-  function handleClick() {
+  function onLoginClick() {
     history.push("/login");
+  }
+
+  function onLogoutClick() {
+    history.push("/");
   }
 
   return (
@@ -45,8 +49,11 @@ const NavBar = () => {
           <Typography variant="h6" className={classes.title}>
             Compere
           </Typography>
-          <Button color="inherit" onClick={handleClick}>
+          <Button color="inherit" onClick={onLoginClick}>
             Login
+          </Button>
+          <Button color="inherit" onClick={onLogoutClick}>
+            Logout
           </Button>
         </Toolbar>
       </AppBar>
