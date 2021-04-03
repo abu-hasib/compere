@@ -45,11 +45,13 @@
   display: flex;
   flex-direction: column;
   justify-items: center;
-  align-items: center;
+  align-items: flex-start;
+  padding-top: 132px;
+  padding-right: 80px;
 }
 
 .welcome h1 {
   font-size: 64px;
   margin-top: 0;
-  color: #0e0e0e;
+  /* color: #0e0e0e; */
 }
